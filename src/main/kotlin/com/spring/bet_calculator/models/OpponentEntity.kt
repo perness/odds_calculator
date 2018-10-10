@@ -5,10 +5,8 @@ import javax.persistence.GeneratedValue
 import javax.persistence.Id
 
 @Entity
-data class TeamEntity constructor(
+data class OpponentEntity constructor(
         var name: String,
-        var city: String,
-        var country: String,
-        var teams: LinkedHashMap<String, OpponentEntity>? = null,
+        var ratio: Int,
         @get:Id @get:GeneratedValue var id: Long? = null
 )

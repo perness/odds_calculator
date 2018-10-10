@@ -1,8 +1,10 @@
 package com.spring.bet_calculator.api
 
 import com.google.common.base.Throwables
+import com.spring.bet_calculator.Constants
 import com.spring.bet_calculator.dto.TeamConverter
 import com.spring.bet_calculator.dto.TeamDto
+import com.spring.bet_calculator.models.TeamEntity
 import com.spring.bet_calculator.repositories.TeamRepository
 import io.swagger.annotations.Api
 import io.swagger.annotations.ApiOperation
@@ -14,9 +16,9 @@ import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 import javax.validation.ConstraintViolationException
 
-const val ID_PARAM = "The numeric teamId of the team"
+/*const val ID_PARAM = "The numeric teamId of the team"
 const val BASE_JSON = "application/json;charset=UTF-8"
-const val TEAM_JSON = "application/vnd.bet_calculator.teams+json;charset=UTF-8;version=2"
+const val TEAM_JSON = "application/vnd.bet_calculator.teams+json;charset=UTF-8;version=2"*/
 
 @Api(
         value = "/teams",
@@ -24,7 +26,7 @@ const val TEAM_JSON = "application/vnd.bet_calculator.teams+json;charset=UTF-8;v
 )
 @RequestMapping(
         path = ["/teams"], // when the url is "<base>/teams", then this class will be used to handle it
-        produces = [TEAM_JSON, BASE_JSON]
+        produces = [Constants.TEAM_JSON, Constants.BASE_JSON]
 )
 @RestController
 class TeamRestApi
@@ -80,7 +82,7 @@ class TeamRestApi
     }
 
     @ApiOperation("Create team")
-    @PostMapping(consumes = [TEAM_JSON, BASE_JSON])
+    @PostMapping(consumes = [Constants.TEAM_JSON, Constants.BASE_JSON])
     @ApiResponse(code = 201, message = "The teamId of the newly created team")
     fun createTeam(
             @ApiParam("Name of team, name of city, name of country and ID(null)")
@@ -117,7 +119,7 @@ class TeamRestApi
     @ApiOperation("Delete a team with given ID")
     @DeleteMapping(path = ["/{id}"])
     fun delete(
-            @ApiParam(ID_PARAM)
+            @ApiParam(Constants.TEAM_ID_PARAM)
             @PathVariable("id")
             pathId: String?
     ) : ResponseEntity<Any> {
@@ -142,7 +144,7 @@ class TeamRestApi
     @ApiOperation("Get a single team specified by id")
     @GetMapping(path = ["/{id}"])
     fun getTeam(
-            @ApiParam(ID_PARAM)
+            @ApiParam(Constants.TEAM_ID_PARAM)
             @PathVariable("id")
             pathId: String?) : ResponseEntity<TeamDto>
     {
@@ -160,9 +162,9 @@ class TeamRestApi
     }
 
     @ApiOperation("Update existing team")
-    @PutMapping(path = ["/{id}"], consumes = [TEAM_JSON, BASE_JSON])
+    @PutMapping(path = ["/{id}"], consumes = [Constants.TEAM_JSON, Constants.BASE_JSON])
     fun update(
-            @ApiParam(ID_PARAM)
+            @ApiParam(Constants.TEAM_ID_PARAM)
             @PathVariable("id")
             pathId: String?,
             @ApiParam("The team that will replace the old one. Cannot change ID")
@@ -214,6 +216,15 @@ class TeamRestApi
         } else {
             dto.id
         }
+    }
+
+    private fun increaseOrDeacreaseRatio(win: Boolean, team: TeamEntity, oponent: String) : Int
+    {
+        if (win)
+        {
+
+        }
+        return 0
     }
 }
 

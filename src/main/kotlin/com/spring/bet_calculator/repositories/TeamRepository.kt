@@ -15,6 +15,8 @@ interface TeamRepository : CrudRepository<TeamEntity, Long>, TeamRepositoryCusto
     fun findAllByCity(city: String) : Iterable<TeamEntity>
 
     fun findAllByCountryAndCity(country: String, city: String) : Iterable<TeamEntity>
+
+    fun findByName(name: String) : TeamEntity
 }
 //--------------------------------------------------------
 @Transactional

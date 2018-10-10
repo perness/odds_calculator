@@ -12,6 +12,7 @@ class TeamConverter
                     name = entity.name,
                     city = entity.city,
                     country = entity.country,
+                    teams = entity.teams,
                     teamId = entity.id?.toString()
             ).apply { id = entity.id?.toString() }
         }

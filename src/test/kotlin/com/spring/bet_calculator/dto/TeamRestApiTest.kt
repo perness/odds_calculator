@@ -86,7 +86,7 @@ class TeamRestApiTest : TRTestBase()
 
         given().contentType(TEAM_JSON)
                 .pathParam("id", id)
-                .body(TeamDto(newName, newCity, country, id))
+                .body(TeamDto(newName, newCity, country, null, id))
                 .put("/{id}")
                 .then()
                 .statusCode(204)

@@ -61,17 +61,18 @@ class TeamEntityTest
     }
 
     @Test
-    fun testGet()
+    fun testGetById()
     {
         val name = "AS Roma"
         val description = "Rome"
         val country = "Italy"
 
         val teamEntity = crud.save(TeamEntity(name, description, country))
+        val newEntity = crud.findById(teamEntity.id!!)
 
-        assertEquals(name, teamEntity.name)
-        assertEquals(description, teamEntity.city)
-        assertEquals(country, teamEntity.country)
+        assertEquals(name, newEntity.get().name)
+        assertEquals(description, newEntity.get().city)
+        assertEquals(country, newEntity.get().country)
     }
 
     @Test
