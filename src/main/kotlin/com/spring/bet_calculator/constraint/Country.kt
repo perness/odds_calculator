@@ -14,6 +14,6 @@ import kotlin.reflect.KClass
 @Documented
 annotation class Country constructor(
         val message: String = "Invalid country",
-        val goups: Array<KClass<*>> = [],
+        val groups: Array<KClass<*>> = [],
         val payload: Array<KClass<out Payload>> = []
 )

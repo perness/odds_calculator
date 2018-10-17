@@ -17,6 +17,10 @@ interface OpponentRepository : CrudRepository<OpponentEntity, Long>, OpponentRep
 interface OpponentRepositoryCustom
 {
     fun updateRatio(opponentId: Long, ratio: Int) : Boolean
+
+    fun update(opponentId: Long,
+               name: String,
+               ratio: Int) : Boolean
 }
 //--------------------------------------------------------
 @Repository
@@ -25,6 +29,15 @@ class OpponentRepositoryImpl : OpponentRepositoryCustom
 {
     @Autowired
     private lateinit var em: EntityManager
+
+    override fun update(opponentId: Long, name: String, ratio: Int) : Boolean
+    {
+        val entity = em.find(OpponentEntity::class.java, opponentId)
+        entity.name = name
+        entity.ratio = ratio
+
+        return true
+    }
 
     override fun updateRatio(opponentId: Long, ratio: Int) : Boolean
     {

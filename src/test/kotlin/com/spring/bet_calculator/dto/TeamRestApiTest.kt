@@ -1,6 +1,6 @@
 package com.spring.bet_calculator.dto
 
-import com.spring.bet_calculator.api.TEAM_JSON
+import com.spring.bet_calculator.Constants.Companion.TEAM_JSON
 import io.restassured.RestAssured.*
 import org.hamcrest.CoreMatchers.equalTo
 import org.junit.Test

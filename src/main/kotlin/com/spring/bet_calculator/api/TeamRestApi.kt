@@ -94,6 +94,7 @@ class TeamRestApi
         {
             return ResponseEntity.status(400).build()
         }
+
         if (teamDto.name == null || teamDto.city == null || teamDto.country == null)
         {
             return ResponseEntity.status(400).build()
@@ -133,10 +134,12 @@ class TeamRestApi
         {
             return ResponseEntity.status(400).build()
         }
+
         if (!teamCrud.existsById(id))
         {
             return ResponseEntity.status(404).build()
         }
+
         teamCrud.deleteById(id)
         return ResponseEntity.status(204).build()
     }
@@ -216,15 +219,6 @@ class TeamRestApi
         } else {
             dto.id
         }
-    }
-
-    private fun increaseOrDeacreaseRatio(win: Boolean, team: TeamEntity, oponent: String) : Int
-    {
-        if (win)
-        {
-
-        }
-        return 0
     }
 }
 
